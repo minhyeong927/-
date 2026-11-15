@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1 {text-align: center;}
+    .display {width: 205px; height: 40px; margin-top: 3px;}
+    .display {text-align: right; font-family: "Oxanium", sans-serif; font-size: 22px;}
+    input[type="button"] {width: 50px; height: 50px; margin-top: 5px; text-align: center; vertical-align: middle;}
+    #calc {width: 220px; margin-left: auto; margin-right: auto;}
+</style>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        let result = 0;
+        let num = "";
+        let op = "+";
+
+        $(".num").click(function() {
+            let cur = $("#display2").val();
+            let n = $(this).val()
+            if(op == "=") {
+                cur = "";
+                result = 0;
+                op = "+";
+                $("#display1").val("");
+            }
+            $("#display2").val(cur+n);
+            num = num + n;
+        });
+        $(".op").click(function() {
+            let cur = $("#display2").val();
+            let n = $(this).val();
+            switch(op) {
+                case "+":
+                    result = result + Number(num);
+                    break;
+                case "-":
+                    result = result - Number(num);
+                    break;
+                case "*":
+                    result = result * Number(num);
+                    break;
+                case "/":
+                    result = result / Number(num);
+                    break;
+            }
+            num = "";
+            if(n != "=") {
+                op = n;
+                $("#display2").val(cur+n);
+            }
+            else {
+                $("#display1").val(cur);
+                $("#display2").val(result);
+                op = "=";
+            }
+        });
+        $(".func").click(function() {
+            result = 0;
+            num = "";
+            op = "+";
+            $("#display1").val("");
+            $("#display2").val("");
+        });
+    });
+</script>
+<body>
+    <h1>계산기</h1>
+    <div id = "calc">
+        <div>
+            <input type="text" class = "display" id = "display1" readonly>
+            <input type="text" class = "display" id = "display2" readonly>
+
+        </div>
+        <input type="button" class = "num" value = "7">
+        <input type="button" class = "num" value = "8">
+        <input type="button" class = "num" value = "9">
+        <input type="button" class = "op" value = "+"> <br>
+        <input type="button" class = "num" value = "4">
+        <input type="button" class = "num" value = "5">
+        <input type="button" class = "num" value = "6">
+        <input type="button" class = "op" value = "-"> <br>
+        <input type="button" class = "num" value = "1">
+        <input type="button" class = "num" value = "2">
+        <input type="button" class = "num" value = "3">
+        <input type="button" class = "op" value = "*"> <br>
+        <input type="button" class = "func" value = "ac">
+        <input type="button" class = "num" value = "0">
+        <input type="button" class = "op" value = "=">
+        <input type="button" class = "op" value = "/"> <br>
+
+    </div>
+</body>
+</html>
