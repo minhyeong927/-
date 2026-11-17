@@ -9,7 +9,14 @@ app.get("/", (req, res) => {
     res.status(200);
     res.send("Hello Node");
 });
-
+app.get("/users", (req, res) => {
+    res.status(200);
+    res.send("Get all users");
+});
+app.post("/users", (req, res) => {
+    res.status(200);
+    res.send("Create new user");
+});
 
 //서버실행
 app.listen(PORT, () => {

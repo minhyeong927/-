@@ -2,10 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Node.js http 모듈 실습 서버",
-  "main": "ex02.js",
+  "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node ex02.js"
+    "start": "node index.js"
   },
   "engines": {
     "node": ">=18"
