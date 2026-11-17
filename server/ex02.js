@@ -12,9 +12,22 @@ const server = http.createServer((req,res) => {
     //res.setHeader("Content-Type", "text/plain");
     //res.write("Hello node")
     //res.end();
-    res.setHeader("Content-Type", "text/html");
-    const readStream = fs.createReadStream(__dirname+"/index.html", "utf-8");
-    readStream.pipe(res);
+    //res.setHeader("Content-Type", "text/html");
+    //const readStream = fs.createReadStream(__dirname+"/index.html", "utf-8");
+    //readStream.pipe(res);
+    
+    res.setHeader("Content-Type", "text/plain");
+    const {method, url } = req;
+    if( method === "GET" && url === "/home") {
+        res.statusCode = 200;
+        res.end("HOME");
+    } else if( method === "GET" && url === "/about") {
+        res.statusCode = 200;
+        res.end("ABOUT");
+    } else {
+        res.statusCode = 404;
+        res.end("NOT FOUND");
+    }
 });
 //서버 실행
 server.listen(PORT, () => {
